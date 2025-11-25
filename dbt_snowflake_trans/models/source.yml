@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: e2e_raw          # Tên bạn sẽ dùng để gọi trong code dbt (ví dụ: {{ source('e2e_raw', 'customers_landing') }})
+    database: E2E_DB       # Tên Database trong Snowflake
+    schema: RAW            # Tên Schema chứa các bảng Landing
+    description: "Dữ liệu thô (Raw) được Snowpipe ingest từ S3 (định dạng Parquet/JSON từ Debezium)"
+    
+    tables:
+      - name: CUSTOMERS_LANDING
+        description: "Bảng chứa dữ liệu thô của khách hàng."
+        columns:
+          - name: PAYLOAD
+            data_type: VARIANT
+            description: "Chứa toàn bộ thông tin bản ghi (id, name, email) và metadata của Debezium (__op, __source_ts_ms)"
+          - name: LOAD_TIME
+            data_type: TIMESTAMP_LTZ
+            description: "Thời gian Snowpipe nạp dữ liệu vào bảng."
+
+      - name: ACCOUNTS_LANDING
+        description: "Bảng chứa dữ liệu thô của tài khoản ngân hàng."
+        columns:
+          - name: PAYLOAD
+            data_type: VARIANT
+            description: "Chứa thông tin account (id, customer_id, balance, type...)"
+          - name: LOAD_TIME
+            data_type: TIMESTAMP_LTZ
+
+      - name: TRANSACTIONS_LANDING
+        description: "Bảng chứa dữ liệu thô của các giao dịch."
+        columns:
+          - name: PAYLOAD
+            data_type: VARIANT
+            description: "Chứa thông tin transaction (id, amount, txn_type...)"
+          - name: LOAD_TIME
+            data_type: TIMESTAMP_LTZ
