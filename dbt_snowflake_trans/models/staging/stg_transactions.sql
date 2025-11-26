@@ -1,6 +1,6 @@
 {{ config(
     materialized = 'dynamic_table',
-    snowflake_warehouse = 'E2E_WH',
+    snowflake_warehouse = 'DBT_WH',
     target_lag = '1 minute',
     on_configuration_change = 'apply'
 ) }}
