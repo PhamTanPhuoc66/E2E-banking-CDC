@@ -1,0 +1,12 @@
+mysql-connector-python
+Faker==25.8.0
+python-dotenv==1.0.1
+pyyaml
+#Consumer
+kafka-python
+boto3
+fastparquet
+pandas
+
+#dbt
+dbt-snowflake

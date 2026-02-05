@@ -1,0 +1,1 @@
+{"Statement":[{"Action":"sts:AssumeRole","Condition":{"StringEquals":{"sts:ExternalId":"FAKE_EXTERNAL_ID"}},"Effect":"Allow","Principal":{"AWS":["arn:aws:iam::327903110591:user/o5db1000-s"]}}],"Version":"2012-10-17"}
